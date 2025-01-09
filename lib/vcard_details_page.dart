@@ -112,6 +112,48 @@ class _VCardDetailsPageState extends State<VCardDetailsPage> {
                 ),
                 const SizedBox(height: 24),
 
+                // Photo du député
+                if (isValid && dbData['data']['photoUrl'] != null) ...[
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          dbData['data']['photoUrl'],
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              width: 200,
+                              height: 200,
+                              color: Colors.grey[300],
+                              child: Icon(
+                                Icons.person,
+                                size: 100,
+                                color: Colors.grey[600],
+                              ),
+                            );
+                          },
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+
                 // Informations du QR Code
                 const Text(
                   'Informations du QR Code',

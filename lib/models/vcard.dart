@@ -6,10 +6,21 @@ class VCard {
   late String telephone;
   late String email;
   late String website;
+  String? deputeId;
+
+  // Méthode pour récupérer l'URL de la photo
+  String? getPhotoUrl() {
+    return deputeId != null
+        ? "https://datan.fr/assets/imgs/deputes_webp/depute_${deputeId}_webp.webp"
+        : null;
+  }
+
+  // Méthode pour définir l'ID du député
+  void setDeputeId(String id) {
+    deputeId = id;
+  }
 
   VCard.fromRawData(String data) {
-    print("=== Début du parsing VCard ===");
-    print("Données brutes reçues:");
     print(data);
 
     nom = "";
@@ -19,6 +30,7 @@ class VCard {
     telephone = "";
     email = "";
     website = "";
+    deputeId = null; // Initialisation à null
 
     List<String> lines = data.split('\n');
     for (String line in lines) {
@@ -54,7 +66,6 @@ class VCard {
       }
     }
 
-    print("=== Résultat du parsing ===");
     print("Nom: '$nom'");
     print("Prénom: '$prenom'");
     print("Organisation: '$organisation'");
