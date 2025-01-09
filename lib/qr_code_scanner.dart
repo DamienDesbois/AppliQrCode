@@ -43,7 +43,6 @@ class QrCodeScanner extends StatelessWidget {
           for (final barcode in barcodes) {
             final qrContent = barcode.rawValue;
             if (qrContent != null) {
-              print("\n====== NOUVEAU SCAN QR CODE ======");
               _analyzeQRContent(qrContent);
 
               // Vérification de la VCard
@@ -71,7 +70,6 @@ class QrCodeScanner extends StatelessWidget {
               }
 
               try {
-                print("\n=== Tentative de création de la VCard ===");
                 final vcard = VCard.fromRawData(qrContent);
 
                 print("VCard créée avec succès :");

@@ -1,17 +1,37 @@
-# qrcodeapplication
+Bonjour, je m'appelle Damien Desbois, j'ai 23 ans
+Je suis actuellement en 2ème année du BTS SIO au lycée Chevrollier à Angers
 
-A new Flutter project.
+Ce projet était un hackathon d'une semaine où nous devions piocher 1 sujet parmis 4 autres.
 
-## Getting Started
+Je suis tombé sur le sujet n°3 : Accès à l'hémicycle de l'Assemblée National.
 
-This project is a starting point for a Flutter application.
+I) Présentation du projet
 
-A few resources to get you started if this is your first Flutter project:
+Ce projet consistait à créer une application qui permettait de controler et scanner le QR code des différents députés souhaitant accéder à l’hémicycle de l'Assemblée National. 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Nous avions le choix sur le language ainsi que la plateforme
+Je suis partis sur du développement mobile avec la plateforme Flutter et le language Dart.
+Si j'ai choisis cela, c'est tout d'abord car la plateforme qui me semblait la plus adapté pour scanner un QR code, c'était le téléphone.
+Et j'ai utilisé les langages Dart et la plateforme Flutter. Ce sont des outils rapides et faciles d'utilisations, que j'avais déjà utilisé, afin de programmer un projet en moins d'une semaine, je souhaitais utiliser des outils que j'avais déjà vus, afin d'être le plus efficace possible.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# AppliQrCode
+II) Installer le programme
+Le programme est disponible sur mon git https://github.com/DamienDesbois/AppliQrCode.git
+J'ai mis le projet en privée et j'ai ajouté M.Brosseau en lecture.
+Il faut lancer le projet sur un téléphone ou un émulateur présent sur le réseau du lycée 192.168.X.X
+
+
+J'ai utilisé mysql pour la base de données.
+Identification de ma base de données :
+IP serveur : 192.168.10.16
+username : desbois_damien
+password :  b3jH12VY
+nom base de données : desbois_damien_depute
+
+Il suffit de récupérer le code source
+
+III) Lien youtube
+Voici le lien de la vidéo youtube en non repertorié https://youtube.com/shorts/s72vylvi_xo?feature=share
+
+IV) Conclusion
+
+Pour conclure, j'ai trouvé ce projet très interessant. Devoir développer une application en moins d'une semaine aura été très formateur et assez nouveau, pour un projet de cette taille. J'ai eu quelques difficultés niveau temps et organisation. Mais ça restait un projet, très amusant, très parlant, et je comprenait l'utilité et l'importance du projet.

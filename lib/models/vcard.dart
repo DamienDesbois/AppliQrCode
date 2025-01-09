@@ -8,7 +8,7 @@ class VCard {
   late String website;
   String? deputeId;
 
-  // Méthode pour récupérer l'URL de la photo
+  // Récupération de l'URL de la photo
   String? getPhotoUrl() {
     return deputeId != null
         ? "https://datan.fr/assets/imgs/deputes_webp/depute_${deputeId}_webp.webp"
@@ -30,7 +30,7 @@ class VCard {
     telephone = "";
     email = "";
     website = "";
-    deputeId = null; // Initialisation à null
+    deputeId = null;
 
     List<String> lines = data.split('\n');
     for (String line in lines) {

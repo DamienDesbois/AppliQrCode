@@ -46,8 +46,8 @@ class _VCardDetailsPageState extends State<VCardDetailsPage> {
             );
           }
 
-          final dbData = snapshot.data;
           // Vérifier si le député a été trouvé dans la base de données
+          final dbData = snapshot.data;
           if (dbData == null || dbData['status'] == 'error') {
             return Center(
               child: Column(
