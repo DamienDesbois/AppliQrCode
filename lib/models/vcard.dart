@@ -1,64 +1,72 @@
 class VCard {
-  final String nom;
-  final String prenom;
-  final String organisation;
-  final String poste;
-  final String telephone;
-  final String email;
+  late String nom;
+  late String prenom;
+  late String organisation;
+  late String poste;
+  late String telephone;
+  late String email;
+  late String website;
 
-  VCard({
-    required this.nom,
-    required this.prenom,
-    required this.organisation,
-    required this.poste,
-    required this.telephone,
-    required this.email,
-  });
+  VCard.fromRawData(String data) {
+    print("=== Début du parsing VCard ===");
+    print("Données brutes reçues:");
+    print(data);
 
-  factory VCard.fromRawData(String rawData) {
-    final lines = rawData.replaceAll('\r\n', '\n').split('\n');
-    String nom = '',
-        prenom = '',
-        organisation = '',
-        poste = '',
-        telephone = '',
-        email = '';
+    nom = "";
+    prenom = "";
+    organisation = "";
+    poste = "";
+    telephone = "";
+    email = "";
+    website = "";
 
-    for (var line in lines) {
-      print('Analyse ligne: $line');
+    List<String> lines = data.split('\n');
+    for (String line in lines) {
+      line = line.trim();
+      print("Traitement ligne: '$line'");
 
       if (line.startsWith('N:')) {
-        final parts = line.substring(2).split(';');
-        nom = parts[0];
-        prenom = parts[1];
+        String namePart = line.substring(2).trim();
+        print("Partie nom trouvée: '$namePart'");
+
+        List<String> parts = namePart.split(';');
+        print("Parties après split: ${parts.length} parties");
+        parts.forEach((part) => print("- '$part'"));
+
+        if (parts.length >= 2) {
+          nom = capitalizeFirstLetter(parts[0].trim());
+          prenom = capitalizeFirstLetter(parts[1].trim());
+          print("Nom extrait: '$nom'");
+          print("Prénom extrait: '$prenom'");
+        } else {
+          print("ERREUR: Pas assez de parties dans le nom");
+        }
       } else if (line.startsWith('ORG:')) {
-        organisation = line.substring(4);
-      } else if (line.startsWith('TEL;WORK;VOICE:')) {
-        telephone = line.substring('TEL;WORK;VOICE:'.length).trim();
-      } else if (line.startsWith('EMAIL;WORK;INTERNET:')) {
-        email = line.substring('EMAIL;WORK;INTERNET:'.length).trim();
+        organisation = line.substring(4).trim();
+      } else if (line.startsWith('TITLE:')) {
+        poste = line.substring(6).trim();
+      } else if (line.startsWith('TEL;')) {
+        telephone = line.split(':').last.trim();
+      } else if (line.startsWith('EMAIL;')) {
+        email = line.split(':').last.trim();
+      } else if (line.startsWith('URL:')) {
+        website = line.substring(4).trim();
       }
     }
 
-    return VCard(
-      nom: nom,
-      prenom: prenom,
-      organisation: organisation,
-      poste: poste,
-      telephone: telephone,
-      email: email,
-    );
+    print("=== Résultat du parsing ===");
+    print("Nom: '$nom'");
+    print("Prénom: '$prenom'");
+    print("Organisation: '$organisation'");
+
+    if (nom.isEmpty || prenom.isEmpty) {
+      print("ERREUR: Nom ou prénom vide");
+      throw Exception("Le nom ou le prénom est vide");
+    }
   }
 
-  @override
-  String toString() {
-    return '''
-    Nom: $nom
-    Prénom: $prenom
-    Email: $email
-    Organisation: $organisation
-    Poste: $poste
-    Téléphone: $telephone
-    ''';
+  String capitalizeFirstLetter(String text) {
+    if (text.isEmpty) return text;
+    return text[0].toUpperCase() + text.substring(1).toLowerCase();
   }
 }
