@@ -5,6 +5,7 @@ import '../models/vcard.dart';
 class DatabaseService {
   static Future<Map<String, dynamic>?> verifyDepute(VCard vcard) async {
     try {
+      // Appel de l'API sur un serveur distant en 192.168.141.1
       final response = await http.post(
           Uri.parse('http://192.168.141.1/hackathon/apiConnexion.php'),
           headers: {'Content-Type': 'application/json'},
